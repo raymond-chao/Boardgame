@@ -55,7 +55,23 @@ public class Boardgame extends JFrame implements ActionListener {
             for (JButton button : buttons) {
                 if (button == e.getSource()) {
                     System.out.println("Klickade på knapp: " + button.getText());
-//                    FLYTTABRICKA
+                    int clicked = -1;
+                    int empty = -1;
+
+                    for (int i = 0; i < buttons.length; i++) {
+                        if (buttons[i] == e.getSource()) clicked = i;
+                        if (buttons[i].getText().equals("")) empty = i;
+
+                    }
+                    if (isNextTo(clicked, empty)) {
+                        String temp = buttons[clicked].getText();
+                        buttons[clicked].setText(" ");
+                        buttons[empty].setText(temp);
+                    }
+                    if (isWinner()) {
+                        JOptionPane.showMessageDialog(this, "Du vann!");
+                    }
+
                     break;
                 }
             }
@@ -74,6 +90,23 @@ public class Boardgame extends JFrame implements ActionListener {
 
         }
 
+    }
+    private boolean isNextTo(int i, int j) {
+        int row1 = i / 4;
+        int col1 = i % 4;
+        int row2 = j / 4;
+        int col2 = j % 4;
+
+        return (Math.abs(row1 - row2) == 1 && col1 == col2) ||
+                (Math.abs(col1 - col2) == 1 && row1 == row2);
+    }
+    private boolean isWinner() {
+        for (int i = 0; i < 15; i++) {
+            if (!buttons[i].getText().equals(String.valueOf(i + 1))) {
+                return false;
+            }
+        }
+        return buttons[15].getText().equals(" ");
     }
     public static void main(String[] args) {
         Boardgame boardgame = new Boardgame();

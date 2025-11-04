@@ -2,7 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
+import java.util.List;
 
 public class Boardgame extends JFrame implements ActionListener {
 
@@ -46,7 +49,8 @@ public class Boardgame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == newGame) {
             System.out.println("Nytt spel!");
-//            LÄGGTILL FUNKTION FÖR BLANDNING
+            Shuffle();
+
         } else{
             for (JButton button : buttons) {
                 if (button == e.getSource()) {
@@ -55,6 +59,19 @@ public class Boardgame extends JFrame implements ActionListener {
                     break;
                 }
             }
+        }
+    }
+    public void Shuffle(){
+        List<String> numbers = new ArrayList<>();
+        for (int i = 0; i < 15; i++) {
+            numbers.add(String.valueOf(i));
+        }
+        numbers.add(" ");
+        Collections.shuffle(numbers);
+
+        for (int i = 0; i < 16; i++) {
+            buttons[i].setText(numbers.get(i));
+
         }
 
     }

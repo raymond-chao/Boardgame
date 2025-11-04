@@ -15,34 +15,51 @@ public class Boardgame extends JFrame implements ActionListener {
     public Boardgame() {
         setTitle("Boardgame");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        add(panel);
-        panel.setLayout(new GridLayout(4, 4));
+        panel.setLayout(new GridLayout(4, 4, 5, 5));
+        for (int i = 0; i < 15; i++) {
+            buttons[i] = new JButton(String.valueOf(i + 1));
+            buttons[i].addActionListener(this);
+            panel.add(buttons[i]);
+        }
+        buttons[15] = new JButton(" ");
+        buttons[15].addActionListener(this);
+        panel.add(buttons[15]);
+
+        add(panel,  BorderLayout.CENTER);
 
 
         //nedre panel
-        add(panel1);
         panel1.add(newGame);
         newGame.addActionListener(this);
+        add(panel1, BorderLayout.SOUTH);
+
 
 
 
         pack();
         setVisible(true);
+        setLocationRelativeTo(null);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == newGame) {
+            System.out.println("Nytt spel!");
+//            LÄGGTILL FUNKTION FÖR BLANDNING
+        } else{
+            for (JButton button : buttons) {
+                if (button == e.getSource()) {
+                    System.out.println("Klickade på knapp: " + button.getText());
+//                    FLYTTABRICKA
+                    break;
+                }
+            }
+        }
 
     }
-
-    public void Function() {
-    }
-
     public static void main(String[] args) {
         Boardgame boardgame = new Boardgame();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 }

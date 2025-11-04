@@ -18,8 +18,9 @@ public class Boardgame extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        panel.setLayout(new GridLayout(4, 4));
         add(panel);
+        panel.setLayout(new GridLayout(4, 4));
+
 
         //nedre panel
         add(panel1);

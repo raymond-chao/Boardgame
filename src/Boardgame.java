@@ -60,7 +60,7 @@ public class Boardgame extends JFrame implements ActionListener {
 
                     for (int i = 0; i < buttons.length; i++) {
                         if (buttons[i] == e.getSource()) clicked = i;
-                        if (buttons[i].getText().equals("")) empty = i;
+                        if (buttons[i].getText().equals(" ")) empty = i;
 
                     }
                     if (isNextTo(clicked, empty)) {

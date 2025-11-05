@@ -14,6 +14,9 @@ public class Boardgame extends JFrame implements ActionListener {
     JButton[] buttons = new JButton[16];
     JButton newGame = new JButton("New Game");
 
+    int moves = 0;
+    JLabel moveLabel = new JLabel("Moves: 0");
+
 
     public Boardgame() {
         setTitle("Boardgame");
@@ -35,6 +38,7 @@ public class Boardgame extends JFrame implements ActionListener {
 
         //nedre panel
         panel1.add(newGame);
+        panel1.add(moveLabel);
         newGame.addActionListener(this);
         add(panel1, BorderLayout.SOUTH);
 
@@ -44,6 +48,7 @@ public class Boardgame extends JFrame implements ActionListener {
         pack();
         setVisible(true);
         setLocationRelativeTo(null);
+        Shuffle();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -67,6 +72,8 @@ public class Boardgame extends JFrame implements ActionListener {
                         String temp = buttons[clicked].getText();
                         buttons[clicked].setText(" ");
                         buttons[empty].setText(temp);
+                        moves++;
+                        moveLabel.setText("Moves: " + moves);
                     }
                     if (isWinner()) {
                         JOptionPane.showMessageDialog(this, "Du vann!");
@@ -80,7 +87,7 @@ public class Boardgame extends JFrame implements ActionListener {
     public void Shuffle(){
         List<String> numbers = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
-            numbers.add(String.valueOf(i));
+            numbers.add(String.valueOf(i + 1));
         }
         numbers.add(" ");
         Collections.shuffle(numbers);
@@ -89,6 +96,8 @@ public class Boardgame extends JFrame implements ActionListener {
             buttons[i].setText(numbers.get(i));
 
         }
+        moves = 0;
+        moveLabel.setText("Moves: 0");
 
     }
     private boolean isNextTo(int i, int j) {

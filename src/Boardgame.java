@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +24,13 @@ public class Boardgame extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        panel.setLayout(new GridLayout(4, 4, 5, 5));
+        Color backgroundColor = Color.black;
+        Color buttonColor = Color.GRAY;
+
+        panel.setBackground(backgroundColor);
+
+
+        panel.setLayout(new GridLayout(4, 4, 3, 3));
         for (int i = 0; i < 15; i++) {
             buttons[i] = new JButton(String.valueOf(i + 1));
             buttons[i].addActionListener(this);
@@ -34,6 +41,11 @@ public class Boardgame extends JFrame implements ActionListener {
         panel.add(buttons[15]);
 
         add(panel,  BorderLayout.CENTER);
+        for (JButton button : buttons) {
+            button.setBackground(buttonColor);
+            button.setForeground(Color.WHITE);
+            button.setFont(new Font("Arial", Font.BOLD, 15));
+        }
 
 
         //nedre panel

@@ -44,7 +44,8 @@ public class Boardgame extends JFrame implements ActionListener {
         for (JButton button : buttons) {
             button.setBackground(buttonColor);
             button.setForeground(Color.WHITE);
-            button.setFont(new Font("Arial", Font.BOLD, 15));
+            button.setFont(new Font("Arial", Font.BOLD, 20));
+            button.setBorder(new LineBorder(Color.WHITE, 1, true));
         }
 
 
@@ -54,7 +55,12 @@ public class Boardgame extends JFrame implements ActionListener {
         newGame.addActionListener(this);
         add(panel1, BorderLayout.SOUTH);
 
+        panel1.setBackground(Color.BLACK);
+        moveLabel.setForeground(Color.WHITE);
+        moveLabel.setFont(new Font("Arial", Font.BOLD, 16));
 
+        newGame.setBackground(Color.white);
+        newGame.setForeground(Color.BLACK);
 
 
         pack();
